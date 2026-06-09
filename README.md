@@ -5,14 +5,13 @@ Acest proiect reprezintă o aplicație desktop modernă, dezvoltată pentru efic
 #### Galerie Foto
 Iată câteva module ale aplicației:
 
-**Admin**
-![Dashboard](admin.png)
+![Dashboard](CabinetMedical/obj/admin.png)
 
 **Doctor**
-![Dashboard](doctor.png)
+![Dashboard](CabinetMedical/obj/doctor.png)
 
 **Pacient**
-![Dashboard](pacient.png)
+![Dashboard](CabinetMedical/obj/pacient.png)
 
 #### Am utilizat tehnologiile:
 * **Framework:** WPF (Windows Presentation Foundation) cu arhitectura **MVVM** (Model-View-ViewModel).
