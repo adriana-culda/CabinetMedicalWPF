@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="CabinetMedical.Views.Admin.AdminShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="Black">
+            <StackPanel Margin="0,20">
+
+                <TextBlock Text="Cabinet Medical Admin" 
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           TextAlignment="Center"
+                           Margin="10,20,10,40"
+                           TextWrapping="Wrap">
+                </TextBlock>
+
+                <Button Content="Dashboard"
+                        Click="Nav_Click" 
+                        Tag="Dashboard"
+                        Margin="0,5" 
+                        Height="40"
+                        Background="Transparent" 
+                        Foreground="White" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left" 
+                        Padding="20,0,0,0" Cursor="Hand">
+                </Button>
+
+                <Button Content="Utilizatori și Personal"
+                        Click="Nav_Click"
+                        Tag="Utilizatori"
+                        Margin="0,5" 
+                        Height="40"
+                        Background="Transparent" 
+                        Foreground="White" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left" 
+                        Padding="20,0,0,0" 
+                        Cursor="Hand">
+                </Button>
+
+                <Button Content="Servicii și Prețuri"
+                        Click="Nav_Click"
+                        Tag="Servicii"
+                        Margin="0,5" 
+                        Height="40"
+                        Background="Transparent" 
+                        Foreground="White" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        Padding="20,0,0,0" 
+                        Cursor="Hand">
+                </Button>
+
+                <Button Content="Rapoarte și Finanțe"
+                        Click="Nav_Click" 
+                        Tag="Rapoarte"
+                        Margin="0,5" 
+                        Height="40"
+                        Background="Transparent" 
+                        Foreground="White" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Left" 
+                        Padding="20,0,0,0" 
+                        Cursor="Hand">
+                </Button>
+
+                <Button Content="Jurnal Audit"
+                        Click="Nav_Click" 
+                        Tag="Jurnal"
+                        Margin="0,5" 
+                        Height="40"
+                        Background="Transparent" 
+                        Foreground="White" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left" 
+                        Padding="20,0,0,0" Cursor="Hand">
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="#00B4D8">
+                <DockPanel Margin="20,0">
+
+                    <TextBlock Text="{Binding CurrentDateTime}"
+                               VerticalAlignment="Center"
+                               Foreground="White" 
+                               FontSize="13">
+                    </TextBlock>
+
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="{Binding NumeUtilizator, StringFormat='Bun venit, {0}!'}" 
+                                   Foreground="White"
+                                   Margin="0,0,20,0" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="SemiBold">
+                        </TextBlock>
+
+                        <Button Content="Log Out" 
+                                Command="{Binding LogoutCommand}"
+                                Foreground="White"
+                                Background="Transparent"
+                                BorderThickness="0" 
+                                Cursor="Hand">
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <ContentControl Content="{Binding CurrentView}" Grid.Row="1" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="CabinetMedical.Views.Client.ClientProgramareNouaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="White">
+    
+    <StackPanel Margin="30">
+        
+        <TextBlock Text="Programare Nouă"
+                   FontSize="24" 
+                   FontWeight="Bold"
+                   Margin="0,0,0,20"/>
+
+        <TextBlock Text="Alege Serviciul:"
+                   Margin="0,5"/>
+        
+        <ComboBox ItemsSource="{Binding Servicii}"
+                  DisplayMemberPath="Denumire" 
+                  SelectedItem="{Binding SelectedServiciu}"
+                  Margin="0,0,0,15"/>
+
+        <TextBlock Text="Data și Ora:" 
+                   Margin="0,5"/>
+        
+        <DatePicker SelectedDate="{Binding DataProgramare}" 
+                    Margin="0,0,0,10"/>
+        
+        <TextBox Text="{Binding OraProgramare}" 
+                 ToolTip="Exemplu: 14:00"
+                 Margin="0,0,0,20"/>
+
+        <Button Content="Salvează Programarea" 
+                Command="{Binding SalveazaProgramareCommand}" 
+                Background="#1abc9c" 
+                Foreground="White" 
+                Padding="10" 
+                FontWeight="Bold"/>
+        
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,201 @@
+﻿<UserControl x:Class="CabinetMedical.Views.Angajat.AngajatProgramariView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" Background="White">
+
+    <UserControl.Resources>
+        <!-- Transforma TRUE/FALSE in VISIBLE/COLLAPSED pt observatii -->
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <Grid>
+        
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" 
+                       Margin="0,0,0,20">
+                
+                <TextBlock Text="Gestionare Programări"
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           VerticalAlignment="Center"/>
+                
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    
+                    <TextBlock Text="Caută:"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0" 
+                               FontSize="14"/>
+                    
+                    <TextBox Width="250" 
+                             Height="30" 
+                             Padding="5" 
+                             FontSize="14" 
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                    
+                </StackPanel>
+                
+            </DockPanel>
+
+            <DataGrid Grid.Row="1" 
+                      ItemsSource="{Binding Programari}" 
+                      SelectedItem="{Binding SelectedProgramare}"
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True" 
+                      SelectionMode="Single"
+                      HeadersVisibility="Column" 
+                      GridLinesVisibility="Horizontal"
+                      BorderThickness="1" 
+                      BorderBrush="#E0E0E0"
+                      Background="White" 
+                      RowHeight="35">
+                
+                <DataGrid.Resources>
+                    
+                    <Style TargetType="DataGridColumnHeader">
+                        
+                        <Setter Property="Background"
+                                Value="#F8F9FA"/>
+                        
+                        <Setter Property="FontWeight"
+                                Value="Bold"/>
+                        
+                        <Setter Property="Padding"
+                                Value="10"/>
+                        
+                    </Style>
+                    
+                </DataGrid.Resources>
+                
+                <DataGrid.Columns>
+                    
+                    <DataGridTextColumn Header="Data și Ora" 
+                                        Binding="{Binding DataOra, StringFormat=\{0:dd/MM/yyyy HH:mm\}}"
+                                        Width="130"/>
+                    
+                    <DataGridTextColumn Header="Nume Pacient" 
+                                        Binding="{Binding Client.Nume}" 
+                                        Width="150"/>
+                    
+                    <DataGridTextColumn Header="Prenume Pacient" 
+                                        Binding="{Binding Client.Prenume}" 
+                                        Width="150"/>
+                    
+                    <DataGridTextColumn Header="Serviciu"
+                                        Binding="{Binding Serviciu.Denumire}"
+                                        Width="*"/>
+                    
+                    <DataGridTextColumn Header="Status"
+                                        Binding="{Binding Status}"
+                                        Width="100"/>
+                    
+                    <DataGridTextColumn Header="Observații" 
+                                        Binding="{Binding Observatii}" 
+                                        Width="150"/>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Row="2" 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right" 
+                        Margin="0,20,0,0">
+                
+                <Button Content="Marchează Finalizată"
+                        Command="{Binding FinalizareProgramareCommand}" 
+                        Background="#28A745" 
+                        Foreground="White" 
+                        BorderThickness="0" 
+                        Padding="15,10" 
+                        Margin="0,0,10,0" 
+                        Cursor="Hand"
+                        FontWeight="Bold"/>
+
+                <Button Content="Anulează Programarea" 
+                        Command="{Binding AnulareProgramareCommand}" 
+                        Background="#DC3545"
+                        Foreground="White"
+                        BorderThickness="0" 
+                        Padding="15,10"
+                        Cursor="Hand" 
+                        FontWeight="Bold"/>
+                
+            </StackPanel>
+        </Grid>
+
+        
+        <!-- apare cand trebuie finalizata programarea -->
+        
+        <Grid Background="#80000000"
+              Visibility="{Binding IsObservatiiVisible, Converter={StaticResource BoolToVis}}">
+            
+            <Border Background="White" 
+                    Width="500" 
+                    Height="350"
+                    CornerRadius="8"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center">
+                
+                <Grid Margin="20">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Adaugă Observații / Diagnostic"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,15"/>
+
+                    <TextBox Grid.Row="1" 
+                             AcceptsReturn="True" 
+                             TextWrapping="Wrap" 
+                             Text="{Binding ObservatiiText, UpdateSourceTrigger=PropertyChanged}" 
+                             VerticalScrollBarVisibility="Auto" 
+                             Padding="10"
+                             FontSize="14"
+                             ToolTip="Scrie aici rețeta, diagnosticul sau concluzia consultației"/>
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Right" 
+                                Margin="0,15,0,0">
+                        
+                        <Button Content="Anulează"
+                                Command="{Binding InchideObservatiiCommand}" 
+                                Background="#6C757D"
+                                Foreground="White"
+                                BorderThickness="0" 
+                                Padding="15,10" 
+                                Margin="0,0,10,0" 
+                                Cursor="Hand"/>
+
+                        <Button Content="Salvează și Finalizează"
+                                Command="{Binding SalveazaObservatiiCommand}" 
+                                Background="#00B4D8"
+                                Foreground="White"
+                                BorderThickness="0" 
+                                Padding="15,10" 
+                                Cursor="Hand"
+                                FontWeight="Bold"/>
+                        
+                    </StackPanel>
+                </Grid>
+                
+            </Border>
+            
+        </Grid>
+
+    </Grid>
+</UserControl>

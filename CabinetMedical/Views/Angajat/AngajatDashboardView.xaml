@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="CabinetMedical.Views.Angajat.AngajatDashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" Background="White">
+
+    <Grid Margin="20">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        
+        <TextBlock Text="Dashboard - Programul de Azi" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <!-- Statistici rapide -->
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    Margin="0,0,0,20">
+
+            <Border Background="#00B4D8" 
+                    CornerRadius="8" 
+                    Padding="20"
+                    Width="220"
+                    Margin="0,0,15,0">
+
+                <StackPanel>
+
+                    <TextBlock Text="Total Pacienți Astăzi" 
+                               Foreground="White" 
+                               FontSize="14" 
+                               Opacity="0.9"/>
+
+                    <TextBlock Text="{Binding TotalProgramariAzi}" 
+                               Foreground="White" 
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Margin="0,5,0,0"/>
+
+                    <TextBlock Text="{Binding DataAzi}"
+                               Foreground="White" 
+                               FontSize="12" 
+                               Margin="0,5,0,0"
+                               Opacity="0.8"/>
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding ProgramariAzi}" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  BorderThickness="1"
+                  BorderBrush="#E0E0E0"
+                  Background="White"
+                  RowHeight="40">
+
+            <DataGrid.Resources>
+                <!-- aspect antet -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#F8F9FA"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Ora" 
+                                    Binding="{Binding DataOra, StringFormat=\{0:HH:mm\}}" 
+                                    Width="100">
+                    
+                    <DataGridTextColumn.ElementStyle>
+                        
+                        <Style TargetType="TextBlock">
+                            
+                            <Setter Property="FontWeight" 
+                                    Value="Bold"/>
+                            <Setter Property="VerticalAlignment" 
+                                    Value="Center"/>
+                            <Setter Property="Margin" 
+                                    Value="10,0"/>
+                            
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Nume Pacient"
+                                    Binding="{Binding NumePacient}"
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Serviciu Solicitat" 
+                                    Binding="{Binding NumeServiciu}" 
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Status" 
+                                    Binding="{Binding Status}"
+                                    Width="150"/>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
+    </Grid>
+</UserControl>

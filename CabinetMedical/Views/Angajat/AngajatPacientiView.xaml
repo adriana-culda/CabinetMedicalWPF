@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="CabinetMedical.Views.Angajat.AngajatPacientiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900" Background="White">
+
+    <Grid Margin="20">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,15">
+            
+            <TextBlock Text="Bază de Date Pacienți" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       VerticalAlignment="Center"/>
+            
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right">
+                
+                <TextBlock Text="Caută:" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0" 
+                           FontSize="14"/>
+                
+                <TextBox Width="250"
+                         Height="30" 
+                         Padding="5" 
+                         FontSize="14" 
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Caută după nume sau prenume"/>
+                
+            </StackPanel>
+            
+        </DockPanel>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Pacienti}"
+                  SelectedItem="{Binding SelectedPacient}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True" 
+                  SelectionMode="Single"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  BorderThickness="1" 
+                  BorderBrush="#E0E0E0" 
+                  Background="White" 
+                  RowHeight="35" 
+                  Margin="0,0,0,20">
+            
+            <DataGrid.Resources>
+                
+                <Style TargetType="DataGridColumnHeader">
+                    
+                    <Setter Property="Background"
+                            Value="#F8F9FA"/>
+                    <Setter Property="FontWeight"
+                            Value="Bold"/>
+                    <Setter Property="Padding" 
+                            Value="10"/>
+                </Style>
+                
+            </DataGrid.Resources>
+            
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Nume"
+                                    Binding="{Binding Nume}" 
+                                    Width="150"/>
+                
+                <DataGridTextColumn Header="Prenume"
+                                    Binding="{Binding Prenume}" 
+                                    Width="150"/>
+                
+                <DataGridTextColumn Header="Telefon"
+                                    Binding="{Binding Telefon}"
+                                    Width="120"/>
+                
+                <DataGridTextColumn Header="Email"
+                                    Binding="{Binding Email}"
+                                    Width="*"/>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <TextBlock Grid.Row="2" 
+                   Text="Istoric Medical și Programări"
+                   FontSize="18"
+                   FontWeight="SemiBold" 
+                   Margin="0,0,0,10"/>
+
+        <DataGrid Grid.Row="3"
+                  ItemsSource="{Binding IstoricPacient}" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  HeadersVisibility="Column" 
+                  GridLinesVisibility="Horizontal"
+                  BorderThickness="1" 
+                  BorderBrush="#E0E0E0"
+                  Background="#FAFAFA"
+                  RowHeight="35">
+            
+            <DataGrid.Resources>
+                
+                <Style TargetType="DataGridColumnHeader">
+                    
+                    <Setter Property="Background" 
+                            Value="#E9ECEF"/>
+                    
+                    <Setter Property="FontWeight"
+                            Value="Bold"/>
+                    
+                    <Setter Property="Padding" 
+                            Value="10"/>
+                    
+                </Style>
+                
+            </DataGrid.Resources>
+            
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Data"
+                                    Binding="{Binding DataOra, StringFormat=\{0:dd/MM/yyyy\}}"
+                                    Width="100"/>
+                
+                <DataGridTextColumn Header="Serviciu"
+                                    Binding="{Binding Serviciu.Denumire}" 
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Doctor"
+                                    Binding="{Binding Angajat.Nume}"
+                                    Width="150"/>
+                
+                <DataGridTextColumn Header="Status"
+                                    Binding="{Binding Status}"
+                                    Width="120"/>
+                
+                <DataGridTextColumn Header="Observații"
+                                    Binding="{Binding Observatii}"
+                                    Width="*"/>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
+    </Grid>
+</UserControl>
