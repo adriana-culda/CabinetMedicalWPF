@@ -11,7 +11,7 @@ Acest proiect reprezintă o aplicație desktop modernă, dezvoltată pentru efic
 * **Interfață:** XAML pentru design, cu o structură modulară.
 * **Comunitate/Tool-uri:** CommunityToolkit.Mvvm (pentru Data Binding și RelayCommands).
 
-### Cum funcționează:
+#### Cum funcționează:
 * **Autentificare securizată:** Sistem de logare cu permisiuni bazate pe roluri (RBAC).
 * **Dashboard Dinamic:** Vizualizare personalizată a programărilor în funcție de rol (Medicii văd programările proprii, Asistenții au o vedere de ansamblu).
 * **Gestionarea Programărilor:** Adăugare, editare și anulare programări în timp real.
@@ -21,5 +21,5 @@ Acest proiect reprezintă o aplicație desktop modernă, dezvoltată pentru efic
 
 Proiectul respectă principiul **Separation of Concerns**, având logica de business complet decuplată de interfața grafică, ceea ce face aplicația ușor de testat și de extins. Utilizarea `Data Binding` oferă o experiență fluidă și elimină necesitatea actualizării manuale a interfeței.
 
-## Autor
+#### Autor
 * **Adriana Culda**
