@@ -2,7 +2,17 @@
 
 Acest proiect reprezintă o aplicație desktop modernă, dezvoltată pentru eficientizarea activității unui cabinet medical. Aplicația permite gestionarea programărilor, a pacienților și a serviciilor medicale, oferind roluri diferențiate pentru **Admin, Medici și Asistenți**.
 
-![Preview Aplicatie](screenshot.png)
+#### Galerie Foto
+Iată câteva module ale aplicației:
+
+**Admin**
+![Dashboard](admin.png)
+
+**Doctor**
+![Dashboard](doctor.png)
+
+**Pacient**
+![Dashboard](pacient.png)
 
 #### Am utilizat tehnologiile:
 * **Framework:** WPF (Windows Presentation Foundation) cu arhitectura **MVVM** (Model-View-ViewModel).
